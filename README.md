@@ -204,3 +204,33 @@ To achieve this, assign different ports:
   docker inspect container_name
   ```
   (This command retrieves information about our container, such as its IP address or gateway, which can then be used in other containers for communication purposes.)
+
+**Docker Network**
+
+1. Suppose we have two containers: one responsible for MySQL and the other for our React app. We need to connect them, but the problem arises when we have to find the IP address of the first container and replace it in the other container's host value. Additionally, we have to create an image. To overcome this hurdle, Docker provides Docker networks. We can create a network and bind both containers to this network. Then, we simply need to give the first container's name in the host value.
+
+- To see Docker network commands:
+  ```
+  docker network --help
+  ```
+
+- To create a network:
+  ```
+  docker network create my-net
+  ```
+  (Here, `my-net` is your network name)
+
+- To list networks:
+  ```
+  docker network ls
+  ```
+
+- To run the MySQL container and bind it to the `my-net` network:
+  ```
+  docker run -d --env MYSQL_ROOT_PASSWORD="root" --env MYSQL_DATABASE="userinfo" --name mysqldb --network my-net mysql
+  ```
+
+- To run the first container and bind it to the `my-net` network (ensure you replace the host name with the first container name and create a new image bound to the `my-net` network):
+  ```
+  docker run -it --rm --network my-net b9b6a3facc24
+  ```
