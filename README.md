@@ -178,3 +178,7 @@ To achieve this, assign different ports:
    docker run -v absolute_path_of_your_local_file:/myreactapp/user.txt --rm image_id
    ```
    (Here, we are mounting our local machine's `users.txt` file to the container's `users.txt` file)
+
+**Docker .dockerignore File**
+
+1. If we want to exclude certain folders or files from being sent in a Docker image, such as `node_modules` and `.git` folders, we can create a `.dockerignore` file. In this file, we list the folders and files that we don't want to include in the Docker image.
