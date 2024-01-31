@@ -69,6 +69,8 @@
 1. View all images:  
    ```
    docker image ls
+   OR
+   docker images
    ```
    Note: A single image can run in multiple containers, as containers have their own spaces without conflict.
 
@@ -127,3 +129,31 @@ To achieve this, assign different ports:
    docker run -it image_name
    ```
    (Here `-it` means interactive terminal)
+
+**Sharing Images on Docker Hub**
+
+1. Firstly, create a repository on Docker Hub and then go to our local terminal and run this command:  
+   ```
+   docker login
+   ```
+   (Enter username and password)
+
+2. Recreate the new image with the name of your repository. For example, if I've created a repository and the command is:
+   ```
+   docker push vikaskumar0101/react-learning-app:tagname
+   ```
+   So we need to recreate the image and the name should be like this:
+   ```
+   docker build -t vikaskumar0101/react-learning-app:tagname .
+   ```
+   Note: Replace 'tagname' with your version like 01, 02, etc.
+
+3. Push the images to Docker Hub:
+   ```
+   docker push vikaskumar0101/react-learning-app:001
+   ```
+
+4. If you do not want to recreate the image, you can rename your image with the repository's name using this command:
+   ```
+   docker tag old_name:version new_name:version
+   ```
