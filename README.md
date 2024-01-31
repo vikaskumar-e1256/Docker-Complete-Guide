@@ -170,3 +170,11 @@ To achieve this, assign different ports:
    ```
    docker volume --help
    ```
+
+**Docker External File Mount**
+
+1. Suppose we have a file called `users.txt`, and in this file, we have 10 records. After creating an image and running it in the container, we realize we need to add more data. It's not a good practice to add data and recreate the image each time. To resolve this problem, we can mount or bind the `users.txt` file from our local machine to the container's `users.txt` file using the following command:
+   ```
+   docker run -v absolute_path_of_your_local_file:/myreactapp/user.txt --rm image_id
+   ```
+   (Here, we are mounting our local machine's `users.txt` file to the container's `users.txt` file)
