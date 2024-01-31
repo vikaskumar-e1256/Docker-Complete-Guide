@@ -120,3 +120,10 @@ To achieve this, assign different ports:
    docker run -d -p 3002:5173 ff2ce433d9b1
    docker run -d -p 3001:5173 ff2ce433d9b1
    ```
+**Running a Program with the Help of Terminal**
+
+1. Suppose we have to run a Python program or PHP test case with the help of terminal and docker:  
+   ```
+   docker run -it image_name
+   ```
+   (Here `-it` means interactive terminal)
