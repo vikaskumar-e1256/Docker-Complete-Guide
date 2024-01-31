@@ -182,3 +182,25 @@ To achieve this, assign different ports:
 **Docker .dockerignore File**
 
 1. If we want to exclude certain folders or files from being sent in a Docker image, such as `node_modules` and `.git` folders, we can create a `.dockerignore` file. In this file, we list the folders and files that we don't want to include in the Docker image.
+
+**Communication between Containers**
+
+1. Suppose we have a program that fetches data from an API, web server, or a local MySQL database installed on our computer. Alternatively, we might have two containers: one for API development and another for a frontend React application. In another scenario, one container might have MySQL installed, and we need to fetch data from that container to another container where our program resides. To handle such situations, we utilize Docker's network concept.
+
+- To install a package into our container for easy use:
+  ```
+  RUN composer require laravel/ui
+  ```
+  (This command should be included in the Dockerfile)
+
+- To interact with a local database from within a container, use:
+  ```
+  host:"host.docker.internal"
+  ```
+  (This should be our host name)
+
+- To obtain information about a container, including its IP network or gateway (useful when one container needs to interact with another):
+  ```
+  docker inspect container_name
+  ```
+  (This command retrieves information about our container, such as its IP address or gateway, which can then be used in other containers for communication purposes.)
