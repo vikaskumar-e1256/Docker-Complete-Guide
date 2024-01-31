@@ -157,3 +157,16 @@ To achieve this, assign different ports:
    ```
    docker tag old_name:version new_name:version
    ```
+
+**Docker Volume Related Commands**
+
+1. Suppose we create a file and store some information in that file. After running the container, stopping it, and running it again, we observe that we do not have the old information. This is because within the container, the program performs file read and write operations, and once the container is stopped or removed, the file is automatically deleted. The next time the container performs the same steps from start to end. To resolve this issue, Docker provides volumes (storage).
+   ```
+   docker run -it --rm -v myvol1:/myreactapp/ imageid
+   ```
+   (Here, `-v` means volume, `myvol1` is the volume name, and `:/myreactapp/` is the directory name. Make sure it matches the directory name mentioned in the Dockerfile.)
+
+   **Note:** Volumes are only present locally. To see related volume commands:
+   ```
+   docker volume --help
+   ```
